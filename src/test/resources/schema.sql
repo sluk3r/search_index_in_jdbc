@@ -7,11 +7,11 @@ CREATE SCHEMA IF NOT EXISTS `search_schema` DEFAULT CHARACTER SET utf8 ;
 USE `search_schema` ;
 
 -- -----------------------------------------------------
--- Table `search_schema`.`books`
+-- Table `search_schema`.`BOOKS`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `search_schema`.`books` ;
+DROP TABLE IF EXISTS `search_schema`.`BOOKS` ;
 
-CREATE  TABLE IF NOT EXISTS `search_schema`.`books` (
+CREATE  TABLE IF NOT EXISTS `search_schema`.`BOOKS` (
   `BOOK_ID` INT(11) NOT NULL AUTO_INCREMENT ,
   `BOOK_NAME` VARCHAR(45) NOT NULL ,
   `BOOK_AUTHOR` VARCHAR(45) NOT NULL ,

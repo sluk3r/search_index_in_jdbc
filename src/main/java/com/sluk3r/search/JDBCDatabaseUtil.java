@@ -22,8 +22,9 @@ public class JDBCDatabaseUtil {
     public static DataSource getDataSource() {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser("root");
-        dataSource.setPassword("root");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/search_schema?emulateLocators=true&useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false");
+        dataSource.setPassword("toor");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/search_schema?emulateLocators=true&useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false");
+        dataSource.setUrl("jdbc:mysql://192.168.33.10:3306/search_schema?emulateLocators=true&useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false");
         return dataSource;
     }
 

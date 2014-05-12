@@ -28,12 +28,16 @@ public class TestJdbcDirectoryDemo {
     private Directory directory   = null;
     ScriptRunner sqlRunner = null;
 
+//    boolean manual_create_table = true;
+    boolean manual_create_table = false;
+
     @Before
     public void setUp() throws IOException, SQLException {
         directory = new MyJDBCDirectory(JDBCDatabaseUtil.getDataSource(), new MySQLDialect(), "LUCENE_INDEX_TABLE");
 
-        createTable();
-
+        if (! manual_create_table) {
+            createTable();
+        }
         new JDBCBatchInsert().insertRecords();
         new JDBCIndexer(directory).buildIndex();
     }
@@ -44,13 +48,14 @@ public class TestJdbcDirectoryDemo {
             directory.close();
         }
 
-
-        String dropBookTable = "drop table `search_schema`.`books`;";
-        String dropIndexTable = "drop table `search_schema`.`lucene_index_table`;";
-
-        sqlRunner.runScript(dropBookTable + System.getProperty("line.separator") + dropIndexTable);
+        if (! manual_create_table) {
+            String dropBookTable = "drop table `search_schema`.`BOOKS`;";
+            String dropIndexTable = "drop table `search_schema`.`LUCENE_INDEX_TABLE`;";
+            sqlRunner.runScript(dropBookTable + System.getProperty("line.separator") + dropIndexTable);
+        }
     }
 
+    @Test
     public void testSearchRecordOnName() {
         assertTrue(new JDBCSearcher(directory).search("name", "Spring In Action"));
     }
